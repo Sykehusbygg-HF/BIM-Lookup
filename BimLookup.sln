@@ -1,0 +1,101 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BimLookup.Module", "BimLookup.Module\BimLookup.Module.csproj", "{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BimLookup.Blazor.Server", "BimLookup.Blazor.Server\BimLookup.Blazor.Server.csproj", "{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIMLookup.NetApi", "BIMLookup.NetApi\BIMLookup.NetApi.csproj", "{98C7B62C-BA35-49DD-B4E5-77375B818C33}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		DEBUG DEMO Sykehusbygg|Any CPU = DEBUG DEMO Sykehusbygg|Any CPU
+		DEBUG PROD Sykehusbygg|Any CPU = DEBUG PROD Sykehusbygg|Any CPU
+		DEBUG SANDBOX Sykehusbygg|Any CPU = DEBUG SANDBOX Sykehusbygg|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		EasyTest|Any CPU = EasyTest|Any CPU
+		Release DEMO Sykehusbygg|Any CPU = Release DEMO Sykehusbygg|Any CPU
+		Release PROD Sykehusbygg|Any CPU = Release PROD Sykehusbygg|Any CPU
+		Release SANDBOX Sykehusbygg|Any CPU = Release SANDBOX Sykehusbygg|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}.DEBUG DEMO Sykehusbygg|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}.DEBUG DEMO Sykehusbygg|Any CPU.Build.0 = Debug|Any CPU
+		{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}.DEBUG PROD Sykehusbygg|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}.DEBUG PROD Sykehusbygg|Any CPU.Build.0 = Debug|Any CPU
+		{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}.DEBUG SANDBOX Sykehusbygg|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}.DEBUG SANDBOX Sykehusbygg|Any CPU.Build.0 = Debug|Any CPU
+		{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}.EasyTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}.EasyTest|Any CPU.Build.0 = Debug|Any CPU
+		{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}.Release DEMO Sykehusbygg|Any CPU.ActiveCfg = Release|Any CPU
+		{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}.Release DEMO Sykehusbygg|Any CPU.Build.0 = Release|Any CPU
+		{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}.Release PROD Sykehusbygg|Any CPU.ActiveCfg = Release|Any CPU
+		{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}.Release PROD Sykehusbygg|Any CPU.Build.0 = Release|Any CPU
+		{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}.Release SANDBOX Sykehusbygg|Any CPU.ActiveCfg = Release|Any CPU
+		{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}.Release SANDBOX Sykehusbygg|Any CPU.Build.0 = Release|Any CPU
+		{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB971DC1-8BBD-4A4E-A6A1-672312BD310B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}.DEBUG DEMO Sykehusbygg|Any CPU.ActiveCfg = DEBUG DEMO Sykehusbygg|Any CPU
+		{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}.DEBUG DEMO Sykehusbygg|Any CPU.Build.0 = DEBUG DEMO Sykehusbygg|Any CPU
+		{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}.DEBUG PROD Sykehusbygg|Any CPU.ActiveCfg = DEBUG PROD Sykehusbygg|Any CPU
+		{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}.DEBUG PROD Sykehusbygg|Any CPU.Build.0 = DEBUG PROD Sykehusbygg|Any CPU
+		{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}.DEBUG SANDBOX Sykehusbygg|Any CPU.ActiveCfg = DEBUG SANDBOX Sykehusbygg|Any CPU
+		{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}.DEBUG SANDBOX Sykehusbygg|Any CPU.Build.0 = DEBUG SANDBOX Sykehusbygg|Any CPU
+		{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}.EasyTest|Any CPU.ActiveCfg = EasyTest|Any CPU
+		{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}.EasyTest|Any CPU.Build.0 = EasyTest|Any CPU
+		{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}.Release DEMO Sykehusbygg|Any CPU.ActiveCfg = Release DEMO Sykehusbygg|Any CPU
+		{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}.Release DEMO Sykehusbygg|Any CPU.Build.0 = Release DEMO Sykehusbygg|Any CPU
+		{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}.Release PROD Sykehusbygg|Any CPU.ActiveCfg = Release PROD Sykehusbygg|Any CPU
+		{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}.Release PROD Sykehusbygg|Any CPU.Build.0 = Release PROD Sykehusbygg|Any CPU
+		{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}.Release SANDBOX Sykehusbygg|Any CPU.ActiveCfg = Release SANDBOX Sykehusbygg|Any CPU
+		{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}.Release SANDBOX Sykehusbygg|Any CPU.Build.0 = Release SANDBOX Sykehusbygg|Any CPU
+		{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AA11D1C-28B4-47BF-B07F-8367D1DF0C14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98C7B62C-BA35-49DD-B4E5-77375B818C33}.DEBUG DEMO Sykehusbygg|Any CPU.ActiveCfg = Debug|Any CPU
+		{98C7B62C-BA35-49DD-B4E5-77375B818C33}.DEBUG DEMO Sykehusbygg|Any CPU.Build.0 = Debug|Any CPU
+		{98C7B62C-BA35-49DD-B4E5-77375B818C33}.DEBUG PROD Sykehusbygg|Any CPU.ActiveCfg = Debug|Any CPU
+		{98C7B62C-BA35-49DD-B4E5-77375B818C33}.DEBUG PROD Sykehusbygg|Any CPU.Build.0 = Debug|Any CPU
+		{98C7B62C-BA35-49DD-B4E5-77375B818C33}.DEBUG SANDBOX Sykehusbygg|Any CPU.ActiveCfg = Debug|Any CPU
+		{98C7B62C-BA35-49DD-B4E5-77375B818C33}.DEBUG SANDBOX Sykehusbygg|Any CPU.Build.0 = Debug|Any CPU
+		{98C7B62C-BA35-49DD-B4E5-77375B818C33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98C7B62C-BA35-49DD-B4E5-77375B818C33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98C7B62C-BA35-49DD-B4E5-77375B818C33}.EasyTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{98C7B62C-BA35-49DD-B4E5-77375B818C33}.EasyTest|Any CPU.Build.0 = Debug|Any CPU
+		{98C7B62C-BA35-49DD-B4E5-77375B818C33}.Release DEMO Sykehusbygg|Any CPU.ActiveCfg = Release|Any CPU
+		{98C7B62C-BA35-49DD-B4E5-77375B818C33}.Release DEMO Sykehusbygg|Any CPU.Build.0 = Release|Any CPU
+		{98C7B62C-BA35-49DD-B4E5-77375B818C33}.Release PROD Sykehusbygg|Any CPU.ActiveCfg = Release|Any CPU
+		{98C7B62C-BA35-49DD-B4E5-77375B818C33}.Release PROD Sykehusbygg|Any CPU.Build.0 = Release|Any CPU
+		{98C7B62C-BA35-49DD-B4E5-77375B818C33}.Release SANDBOX Sykehusbygg|Any CPU.ActiveCfg = Release|Any CPU
+		{98C7B62C-BA35-49DD-B4E5-77375B818C33}.Release SANDBOX Sykehusbygg|Any CPU.Build.0 = Release|Any CPU
+		{98C7B62C-BA35-49DD-B4E5-77375B818C33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98C7B62C-BA35-49DD-B4E5-77375B818C33}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54E435C6-B198-4F34-9087-1F3CA1A1597E}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/aecse-sykehusbygg
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = BimLookup.Blazor.Server\\BimLookup.Blazor.Server.csproj
+		SccProjectName1 = BimLookup.Blazor.Server
+		SccLocalPath1 = BimLookup.Blazor.Server
+		SccProjectUniqueName2 = BimLookup.Module\\BimLookup.Module.csproj
+		SccProjectName2 = BimLookup.Module
+		SccLocalPath2 = BimLookup.Module
+		SccProjectUniqueName3 = BIMLookup.NetApi\\BIMLookup.NetApi.csproj
+		SccProjectName3 = BIMLookup.NetApi
+		SccLocalPath3 = BIMLookup.NetApi
+	EndGlobalSection
+EndGlobal

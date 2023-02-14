@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@using DevExpress.Blazor
+@using Microsoft.AspNetCore.Components;
+@inject NavigationManager MyNavigationManager
+@*<input value=@ComponentModel.Value
+    @onchange=@(e => ComponentModel.SetValueFromUI((string)e.Value))
+    readonly=@ComponentModel.ReadOnly
+    @attributes=@ComponentModel.Attributes />*@
+
+@*<DxButton RenderStyle="ButtonRenderStyle.Info" Click="@Href" IconCssClass="like" Text=@ComponentModel.Value>
+        @context
+        <span style="width: 0.8em; margin-left: 8px;">@(likes < 10 ? likes.ToString() : "9")</span>
+    </DxButton>*@
+<a href="@Path" target="_blank">@Path</a>
+@code {
+    [Parameter]
+    public InputModel ComponentModel { get; set; }
+    [Parameter]
+    public string Path { get; set; }
+
+    public static RenderFragment Create(InputModel componentModel) =>
+    @<InputRenderer ComponentModel=@componentModel />;
+
+    protected override void OnInitialized()
+    {
+        var uriBuilder = new UriBuilder(MyNavigationManager.Uri);
+        string serverpath = uriBuilder.Uri.AbsoluteUri.Replace(uriBuilder.Uri.AbsolutePath, "");
+        string relativepath = ComponentModel.Value;
+        Path = $"{serverpath}/{relativepath}";
+    }
+    void Like(MouseEventArgs args)
+    {
+    }
+}

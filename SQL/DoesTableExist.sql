@@ -1,0 +1,1 @@
+IF OBJECT_ID('PropertyBimKravView', 'U') IS NOT NULL SELECT '1'

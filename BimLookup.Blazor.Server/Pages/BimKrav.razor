@@ -1,0 +1,480 @@
+﻿@page "/bimkrav"
+
+@using BimLookup.Blazor.Server.Services
+@using BimLookup.Module.BusinessObjects
+@using BimLookup.Module.BusinessObjects.DBViews
+
+@inject IJSRuntime JSRuntime;
+@inject DevExpress.ExpressApp.Core.INonSecuredObjectSpaceFactory objectSpaceFactory;
+@inject NavigationManager NavigationManager
+
+
+<style>
+    body {
+        --syk-indigo: #594ae1;
+        --syk-header-white: #ebebeb;
+        --sky-search-table-border-color: #f5f5f5;
+        overflow-y:auto;
+    }
+
+    .search-main-wrapper {
+        max-width: 1055px;
+        margin: auto;
+        margin-top: 62px;
+    }
+
+    .client-header {
+        color: var(--syk-header-white);
+        background-color: var(--syk-indigo);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        padding-left: 2%;
+        font-size: 18px;
+        box-shadow: 1px 1px 7px 3px rgba(0,0,0,0.25);
+        margin: auto;
+    }
+
+        .client-header > img {
+            vertical-align: middle;
+            border-style: none;
+            width: 175px;
+            border-color: var(--syk-header-white);
+            filter: brightness(10);
+        }
+
+    div.search-filters {
+        max-width: 1055px;
+        flex-wrap:wrap;
+        justify-content:center;
+        padding:unset;
+    }
+
+        div.search-filters input.form-control, div.search-filters button {
+            background-color: #fff;
+            border: none;
+        }
+
+            div.search-filters button
+            div.search-filters button > svg {
+                opacity: 0.7;
+            }
+
+        div.search-filters div.dxbs-editor-input-container {
+            border-bottom: 2px solid #f5f5f5;
+        }
+
+        div.search-filters > div > label {
+            font-size: 10px;
+        }
+
+    .search-result-wrapper {
+        border-left: 3px solid var(--sky-search-table-border-color);
+        border-right: 3px solid var(--sky-search-table-border-color);
+        margin-top: 45px;
+    }
+
+        .search-result-wrapper .searchbar input {
+            border: none;
+            border-bottom: 2px solid #f5f5f5;
+        }
+
+        .search-result-wrapper div.card {
+            border: none;
+        }
+
+        .search-result-wrapper .table-sm th, .search-result-wrapper .table-sm td {
+            border: none;
+            border-bottom: 2px solid #f5f5f5;
+        }
+
+        .search-result-wrapper > div.col-md-12 {
+            padding-left: none;
+        }
+
+            .search-result-wrapper > div.col-md-12:first-child {
+                margin-left: 15px;
+            }
+     
+
+        
+</style>
+
+<style media="screen and (max-width: 610px)">
+    div.search-filters {
+        max-width: 1055px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        padding:20px;
+    }
+</style>
+
+<style media="screen and (max-width: 448px)">
+    div.search-filters {
+        max-width: 1055px;
+        flex-wrap: wrap;
+        justify-content: center;
+     
+    }
+</style>
+
+<style media="screen and (max-width: 388px)">
+    div.card-body.dxbs-grid-pager-container {
+        justify-content: center;
+    }
+</style>
+
+
+<h3 class="client-header"><img src="/images/Logo.svg" /></h3>
+
+<div class="search-main-wrapper">
+    @if (phases == null && properties == null && disciplines == null && projects == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="d-flex flex-row search-filters">
+            <div class="col-md-4" style="padding-bottom: 12px">
+                <label for="project">
+                    Projects:
+                </label>
+                <DxComboBox Data="@projects.OrderBy(x => x.Name)"
+                        Id="project"
+                        FilteringMode="@FilteringMode"
+                        NullText="Select a project..."
+                        TextFieldName="@nameof(Project.Name)"
+                        Value="@SelectedProject"
+                        ValueChanged="@((Project project) => DropdownChanged(project, SelectedPhase, SelectedDiscipline, SelectedCategory))"
+                        ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto"
+                        CssClass="cw-160" />
+            </div>
+            <div class="col-md-4" style="padding-bottom: 12px">
+                <label for="phase">
+                    Phases:
+                </label>
+                <DxComboBox Data="@phases.OrderBy(x => x.Name)"
+                        Id="phase"
+                        FilteringMode="@FilteringMode"
+                        NullText="Select a phase..."
+                        TextFieldName="@nameof(Phase.Name)"
+                        Value="@SelectedPhase"
+                        ValueChanged="@((Phase phase) => DropdownChanged(SelectedProject, phase, SelectedDiscipline, SelectedCategory))"
+                        ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto"
+                        CssClass="cw-160" />
+            </div>
+            <div class="col-md-4" style="padding-bottom: 12px">
+                <label for="discipline">
+                    Disciplines:
+                </label>
+                <DxComboBox Data="@disciplines.OrderBy(x => x.Name)"
+                        FilteringMode="@FilteringMode"
+                        Id="discipline"
+                        NullText="Select a discipline..."
+                        TextFieldName="@nameof(Discipline.Name)"
+                        Value="@SelectedDiscipline"
+                        ValueChanged="@((Discipline discipline) => DropdownChanged(SelectedProject, SelectedPhase, discipline, SelectedCategory))"
+                        ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto"
+                        CssClass="cw-160 ms-1" />
+            </div>
+            <div class="col-md-4" style="padding-bottom: 12px">
+                <label for="category">
+                    Categories:
+                </label>
+                <DxComboBox Data="@categories.OrderBy(x => x.Name)"
+                        FilteringMode="@FilteringMode"
+                        Id="category"
+                        NullText="Select a category..."
+                        TextFieldName="@nameof(RevitCategory.Name)"
+                        Value="@SelectedCategory"
+                        ValueChanged="@((RevitCategory category) => DropdownChanged(SelectedProject, SelectedPhase, SelectedDiscipline, category))"
+                        ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto"
+                        CssClass="cw-160 ms-1" />
+            </div>
+        </div>
+        <section class="search-result-wrapper">
+            <div class="col-md-12 searchbar" style="padding-bottom: 12px">
+                <DxTextBox NullText="Enter text to search" Text="@Filter" TextChanged="OnTextChanged"></DxTextBox>
+            </div>
+            @*<div class="col-md-12">
+        <DxDataGrid Data=@properties.OrderBy(x => x.Name) KeyFieldName="Oid" CssClass="my-grid"
+        PageSize="10" ShowFilterRow="true" PagerPageSizeSelectorVisible="true"
+        PagerAllowedPageSizes="@(new int[] { 10, 20, 50, 100, 200 })">
+        <DxDataGridColumn Width="200px" Field=@nameof(Property.Oid) Visible="false" EditorVisible="false"></DxDataGridColumn>
+        <DxDataGridColumn SortOrder="DataGridColumnSortOrder.Ascending"
+        SortIndex="0" Field=@nameof(Property.Name)></DxDataGridColumn>
+        <DxDataGridColumn Field=@nameof(Property.Description)></DxDataGridColumn>
+        <DxDataGridColumn Field=@nameof(Property.Comment)></DxDataGridColumn>
+        </DxDataGrid>
+        </div>*@
+            <div class="col-md-12">
+                <DxGrid Data="@properties"
+                    AllowGroup="true"
+                    AutoExpandAllGroupRows="true"
+                    CustomizeGroupValueDisplayText="Grid_CustomizeGroupValueDisplayText"
+                    ShowFilterRow="true"
+                    PageSize="20"
+                    PagerNavigationMode="PagerNavigationMode.InputBox"
+                    PageSizeSelectorVisible="true"
+                    PageSizeSelectorItems="@(new int[] { 10, 20, 50, 100, 200 })"
+                    PageSizeSelectorAllRowsItemVisible="true">
+                    <Columns>
+                        <DxGridDataColumn SortOrder="GridColumnSortOrder.Ascending" SortIndex="0" FieldName="Name" />
+                        <DxGridDataColumn FieldName="Description" />
+                        <DxGridDataColumn FieldName="Comment" />
+                        <DxGridDataColumn FieldName="PsetName" GroupIndex="0" GroupInterval="GridColumnGroupInterval.Custom" Width="10%">
+                            <GroupRowTemplate>
+                                <text>@context.GroupValue</text>
+                                @{
+                                    var summaryItems = context.Grid.GetGroupSummaryItems();
+                                    if (summaryItems.Any())
+                                    {
+                                                                            <text> (</text>
+                                        foreach (var i in summaryItems)
+                                        {
+                                            if (i != summaryItems.First())
+                                            {
+                                                                                    <text>, </text>
+                                            }
+                                                                                @context.Grid.GetGroupSummaryLabel(i, context.VisibleIndex)
+                                                                                <text>: </text>
+                                                                                <b>@context.Grid.GetGroupSummaryFormattedValue(i, context.VisibleIndex)</b>
+                                        }
+                                                                            <text>)</text>
+                                    }
+                                }
+                            </GroupRowTemplate>
+                        </DxGridDataColumn>
+                    </Columns>
+                    <GroupSummary>
+                        <DxGridSummaryItem SummaryType="GridSummaryItemType.Count" FieldName="PsetName" />
+                    </GroupSummary>
+                </DxGrid>
+            </div>
+        </section>
+    }
+</div>
+
+@code {
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "Project")]
+    public string QueryProject{ get; set; }
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "Phase")]
+    public string QueryPhase { get; set; }
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "Discipline")]
+    public string QueryDiscipline { get; set; }
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "Category")]
+    public string QueryCategory { get; set; }
+
+
+
+    DataGridFilteringMode FilteringMode { get; set; } = DataGridFilteringMode.Contains;
+    string Filter = string.Empty;
+    private IQueryable<Phase> allphases;
+    private IQueryable<Phase> phases;
+    private IQueryable<Project> projects;
+    private IQueryable<Project> allprojects;
+    private IQueryable<Discipline> disciplines;
+    private IQueryable<Discipline> alldisciplines;
+    private IQueryable<RevitCategory> categories;
+    private IQueryable<RevitCategory> allcategories;
+    private IQueryable<PropertyBimKravView> properties;
+    private IQueryable<PropertyBimKravView> allproperties;
+    //private IQueryable<PropertyInstance> allpropertyeinstances;
+    //private IQueryable<PropertyInstance> propertyeinstances;
+    private Phase SelectedPhase { get; set; }
+    private Project SelectedProject { get; set; }
+    private Discipline SelectedDiscipline { get; set; }
+    private RevitCategory SelectedCategory { get; set; }
+    //[Inject]
+    //CustomDataService CustomDataService { get; set; }
+    //DevExpress.ExpressApp.WebApi.Services.IDataService dataService { get; set; }
+    protected override Task OnParametersSetAsync()
+    {
+        if (!string.IsNullOrEmpty(QueryProject))
+        {
+            SelectedProject = allprojects.Where(x => x.Name == QueryProject).FirstOrDefault();
+        }
+        if (!string.IsNullOrEmpty(QueryPhase))
+        {
+            SelectedPhase = allphases.Where(x => x.Name == QueryPhase).FirstOrDefault();
+        }
+        if (!string.IsNullOrEmpty(QueryDiscipline))
+        {
+            SelectedDiscipline = alldisciplines.Where(x => x.Name == QueryDiscipline).FirstOrDefault();
+        }
+        if (!string.IsNullOrEmpty(QueryCategory))
+        {
+            SelectedCategory = allcategories.Where(x => x.Name == QueryCategory).FirstOrDefault();
+        }
+        //if (SelectedProject != null || SelectedPhase != null || SelectedDiscipline != null)
+        ParametersChanged(SelectedProject, SelectedPhase, SelectedDiscipline, SelectedCategory);
+        return base.OnParametersSetAsync(); ;
+    }
+    protected override bool ShouldRender()
+    {
+        //https://localhost:44318/bimkrav?Project=AA&Phase=Overlevering&Discipline=Mechanical&Category=Doors
+        
+        return base.ShouldRender();
+    }
+    protected override  Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(!firstRender)
+        {
+            
+        }
+        return base.OnAfterRenderAsync(firstRender);
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        //https://docs.devexpress.com/eXpressAppFramework/403669/data-manipulation-and-business-logic/access-object-space-security-and-caption-helper-in-asp-net-core-environment?utm_source=SupportCenter&utm_medium=website&utm_campaign=docs-feedback&utm_content=T1140634&contactId=A631470&p=net6
+        var objectSpacePhase = objectSpaceFactory.CreateNonSecuredObjectSpace(typeof(Phase));
+        var objectSpaceProject = objectSpaceFactory.CreateNonSecuredObjectSpace(typeof(Project));
+        var objectSpaceDiscipline = objectSpaceFactory.CreateNonSecuredObjectSpace(typeof(Discipline));
+        var objectSpaceRevitCategory = objectSpaceFactory.CreateNonSecuredObjectSpace(typeof(RevitCategory));
+        var objectSpacePropertyBimKravView = objectSpaceFactory.CreateNonSecuredObjectSpace(typeof(PropertyBimKravView));
+
+        allphases = phases = objectSpacePhase.GetObjectsQuery<Phase>();
+        allprojects = projects = objectSpaceProject.GetObjectsQuery<Project>();
+        alldisciplines = disciplines = objectSpaceDiscipline.GetObjectsQuery<Discipline>();
+        allcategories = categories = objectSpaceRevitCategory.GetObjectsQuery<RevitCategory>();
+        allproperties = properties = objectSpacePropertyBimKravView.GetObjectsQuery<PropertyBimKravView>();
+
+        //https://localhost:44318/bimkrav?Project=AA&Phase=Overlevering&Discipline=Mechanical&Category=Doors
+        if(!string.IsNullOrEmpty(QueryProject))
+        {
+            SelectedProject = allprojects.Where(x => x.Name == QueryProject).FirstOrDefault();
+        }
+        if (!string.IsNullOrEmpty(QueryPhase))
+        {
+            SelectedPhase = allphases.Where(x => x.Name == QueryPhase).FirstOrDefault();
+        }
+        if (!string.IsNullOrEmpty(QueryDiscipline))
+        {
+            SelectedDiscipline = alldisciplines.Where(x => x.Name == QueryDiscipline).FirstOrDefault();
+        }
+        if (!string.IsNullOrEmpty(QueryCategory))
+        {
+            SelectedCategory = allcategories.Where(x => x.Name == QueryCategory).FirstOrDefault();
+        }
+        if (SelectedProject != null || SelectedPhase != null || SelectedDiscipline != null)
+            ParametersChanged(SelectedProject, SelectedPhase, SelectedDiscipline, SelectedCategory);
+    }
+
+    public void OnTextChanged(string text)
+    {
+        ParametersChanged(SelectedProject, SelectedPhase, SelectedDiscipline, SelectedCategory);
+        Filter = text;
+        text = text.ToLower();
+        if (!string.IsNullOrEmpty(text))
+        {
+            properties = properties.Where(a => a.Name.ToLower().Contains(text) || a.Comment.ToLower().Contains(text) || a.Description.ToLower().Contains(text));
+        }
+
+        //|| a.Date.ToString().ToLower().Contains(text) ||
+        //a.TemperatureC.ToString().ToLower().Contains(text) || a.TemperatureF.ToString().ToLower().Contains(text)).ToList();
+        InvokeAsync(StateHasChanged);
+        JSRuntime.InvokeVoidAsync("highlightFilteredCells", "my-grid", "filtered", Filter);
+    }
+    void OnHtmlDataCellDecoration(DataGridHtmlDataCellDecorationEventArgs<Property> e)
+    {
+        if (e.FieldName == nameof(Property.Name))
+        {
+            if (e.DataItem.Name.ToString().Contains(Filter))
+            {
+                e.CssClass = "filtered";
+            }
+        }
+        else if (e.FieldName == nameof(Property.Description))
+        {
+            if (e.DataItem.Description.ToString().Contains(Filter))
+            {
+                e.CssClass = "filtered";
+            }
+        }
+        else if (e.FieldName == nameof(Property.Comment))
+        {
+            if (e.DataItem.Comment.ToString().Contains(Filter))
+            {
+                e.CssClass = "filtered";
+            }
+        }
+    }
+    void DropdownChanged(Project project, Phase phase, Discipline discipline, RevitCategory category)
+    {
+        SelectedProject = project;
+        SelectedPhase = phase;
+        SelectedDiscipline = discipline;
+        SelectedCategory = category;
+
+        NavigationManager.NavigateTo($"/bimkrav?Project={project?.Name}&Phase={phase?.Name}&Discipline={discipline?.Name}&Category={category?.Name}");
+    }
+    //TODO: Send Query to html link and listen to link instead... typ: www.tjaba.com?project=abc&phase=def&etc=efg
+    void ParametersChanged(Project project, Phase phase, Discipline discipline, RevitCategory category)
+    {
+        SelectedProject = project;
+        SelectedPhase = phase;
+        SelectedDiscipline = discipline;
+        SelectedCategory = category;
+
+        projects = allprojects;
+        phases = allphases;
+        properties = allproperties;
+        disciplines = alldisciplines;
+        categories = allcategories;
+
+        if (SelectedProject != null)
+        {
+            //var propids = SelectedProject.Properties.Select(x => x.Property.Oid.ToString().ToUpper().Replace("{", "").Replace("}", "")).AsQueryable();
+            //properties = allproperties.Where(x => propids.Contains(x.Oid.ToString().ToUpper().Replace("{", "").Replace("}", ""))).AsQueryable();
+
+            var propids = SelectedProject.Properties.Select(x => x.Property?.Oid).AsQueryable();
+            properties = properties.Where(x => propids.Contains(x.Oid)).AsQueryable();
+        }
+        if (SelectedPhase != null)
+        {
+            switch(SelectedPhase.Name)
+            {
+                case "Skisseprosjekt":
+                    properties = properties.Where(p => p.Skisseprosjekt).AsQueryable();
+                    break;
+                case "Forprosjekt":
+                    properties = properties.Where(p => p.Forprosjekt).AsQueryable();
+                    break;
+                case "Detaljprosjekt":
+                    properties = properties.Where(p => p.Detaljprosjekt).AsQueryable();
+                    break;
+                case "Arbeidstegning":
+                    properties = properties.Where(p => p.Arbeidstegning).AsQueryable();
+                    break;
+                case "Overlevering":
+                    properties = properties.Where(p => p.Overlevering).AsQueryable();
+                    break;
+            }
+            //properties = properties.Where(p => p.Phases.Any(d => d.Oid == SelectedPhase.Oid)).AsQueryable();
+        }
+        if (SelectedDiscipline != null)
+        {
+            var propids = SelectedDiscipline.RevitCategories.Distinct().SelectMany(x => x.Properties).Select(y => y.Oid).Distinct().AsQueryable();
+            properties = properties.Where(x => propids.Contains(x.Oid)).AsQueryable();
+        }
+        if (SelectedCategory != null)
+        {
+            var propids = SelectedCategory.Properties.Select(x => x.Oid).AsQueryable();
+            properties = properties.Where(x => propids.Contains(x.Oid)).AsQueryable();
+        }
+    }
+    void Grid_CustomizeGroupValueDisplayText(GridCustomizeGroupValueDisplayTextEventArgs e)
+    {
+        if (e.FieldName == "PropertyGroup.Name")
+        {
+            if (e.DisplayText.Split(':').LastOrDefault() is string s)
+            {
+                e.DisplayText = s;
+            }
+        }
+    }
+}

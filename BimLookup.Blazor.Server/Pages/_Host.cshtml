@@ -1,0 +1,89 @@
+﻿@page "/"
+@namespace BimLookup.Blazor.Server
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using DevExpress.ExpressApp.Blazor.Components
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- meta name="theme-color" content="#000000" -->
+    <title>Bim Lookup</title>
+    <base href="~/" />
+    <component type="typeof(BootstrapThemeLink)" render-mode="Static" />
+
+    <!-- double-click https://supportcenter.devexpress.com/ticket/details/t1071749/blazor-how-to-open-a-detailview-on-a-double-click-instead-of-a-single-click-in-listview -->
+    <script>
+        function addChildEventListener(base, eventName, selector, handler) {
+            base.addEventListener(eventName, function (event) {
+                var closest = event.target.closest(selector);
+                if (closest && base.contains(closest)) {
+                    handler.call(closest, event);
+                }
+            });
+        }
+        let rootElement = document.querySelector("body");
+        addChildEventListener(rootElement, "dblclick", ".xaf-double-click", () => {
+            window.xaf.loadingIndicator.show();
+            return false;
+        });
+    </script>
+    <!-- double-click -->
+
+    <style type="text/css">
+        .xafPopup.dxbs-popup {
+            max-width: 90vw !important;
+            height: 90vh !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- ... -->
+    
+    <!-- ... -->
+    @{
+        string userAgent = Request.Headers["User-Agent"];
+        bool isIE = userAgent.Contains("MSIE") || userAgent.Contains("Trident");
+    }
+    @if(isIE) {
+        <link href="css/site.css" rel="stylesheet" />
+        <div class="d-flex flex-column justify-content-center align-items-center h-100">
+            <div class="d-flex">
+                <img class="mt-2 mr-4" src="_content/DevExpress.ExpressApp.Blazor/images/Sad.svg" width="60" height="60" />
+                <div>
+                    <div class="h1">Internet Explorer is not supported.</div>
+                    <p style="font-size: 1rem; opacity: 0.75;" class="m-0">BIM Lookup cannot be loaded in Internet Explorer.<br>Please use a different browser.</p>
+                </div>
+            </div>
+        </div>
+    }
+    else {
+        @*<component type="typeof(SplashScreen)"
+               render-mode="Static"
+               param-Caption='"Sykehusbygg BIM Lookup"'
+               param-ImagePath='"images/Logo.svg"' 
+               param-ContentType="typeof(BimLookup.Blazor.Server.Pages.SplashScreen)" />*@
+        <component type="typeof(SplashScreen)" render-mode="Static" param-Caption='"Sykehusbygg BIM Lookup"' param-ImagePath='"images/Logo_Small.svg"' />
+        <!-- ... -->
+        @*<link href="_content/DevExpress.Blazor/dx-blazor.css" rel="stylesheet" /> This line is commented out according to the following BC: https://supportcenter.devexpress.com/internal/ticket/details/t1090666*@
+        <link href="_content/DevExpress.ExpressApp.Blazor/styles.css" rel="stylesheet" />
+        <link href="css/site.css" rel="stylesheet" />
+        <script src="_content/DevExpress.ExpressApp.Blazor/scripts.js"></script>
+
+        <app class="d-none">
+            <component type="typeof(App)" render-mode="Server" />
+        </app>
+        
+        <component type="typeof(AlertsHandler)" render-mode="Server" />
+
+        <div id="blazor-error-ui">
+            <component type="typeof(BlazorError)" render-mode="Static" />
+        </div>
+
+        <script src="_framework/blazor.server.js"></script>
+    }
+</body>
+</html>

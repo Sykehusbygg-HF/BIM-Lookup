@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Company="AEC AB" Copyright="AEC AB" Description="BIM Lookup for Sykehusbygg">
+  <BOModel>
+    <Class Name="BimLookup.Module.BusinessObjects.RevitCategory" DefaultLookupListView="RevitCategory_LookupListView_Copy" />
+  </BOModel>
+  <NavigationItems ShowImages="False" DefaultChildItemsDisplayStyle="LargeIcons" NavigationStyle="TreeList" />
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="22.2.3.0" IsNewNode="True" />
+  </SchemaModules>
+  <ViewItems>
+    <PropertyEditor Name="PropertyEditors">
+      <RegisteredPropertyEditor PropertyType="System.DateTime" DefaultDisplayFormat="{0:yyyy-MM-dd}" DefaultEditMask="yyyy-MM-dd" />
+    </PropertyEditor>
+  </ViewItems>
+  <Views DefaultListEditor="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor">
+    <ListView Id="ApplicationUser_LookupListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
+    <ListView Id="ApplicationUserLoginInfo_LookupListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
+    <ListView Id="AppSettings_LookupListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
+    <ListView Id="Discipline_LookupListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
+    <ListView Id="IfcPropertyType_LookupListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
+    <ListView Id="Owner_LookupListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
+    <ListView Id="Phase_LookupListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
+    <ListView Id="Project_LookupListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
+    <ListView Id="Property_ListView_GroupedByPropertyGroup">
+      <Columns>
+        <ColumnInfo Id="Description" Index="2" />
+        <ColumnInfo Id="Comment" Index="3" />
+        <ColumnInfo Id="Owner" PropertyName="Owner" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="Skisseprosjekt" Index="5" />
+        <ColumnInfo Id="Forprosjekt" Index="6" />
+        <ColumnInfo Id="PropertyGroup" Index="7" />
+        <ColumnInfo Id="Detaljprosjekt" Index="8" />
+        <ColumnInfo Id="Arbeidstegning" Index="9" />
+        <ColumnInfo Id="Overlevering" Index="10" />
+      </Columns>
+    </ListView>
+    <ListView Id="Property_ListView_GroupedByPropertyGroup_UI" ShowAutoFilterRow="True">
+      <Columns>
+        <ColumnInfo Id="PropertySetDisplayValue" PropertyName="PropertySetDisplayValue" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Name" Width="79" />
+        <ColumnInfo Id="DisplayVersion" Width="73" />
+        <ColumnInfo Id="Description" Index="2" Width="100" />
+        <ColumnInfo Id="Comment" Index="3" Width="89" />
+        <ColumnInfo Id="Owner" PropertyName="Owner" Index="4" Width="67" IsNewNode="True" />
+        <ColumnInfo Id="PropertyGroup" Index="5" Width="140" />
+      </Columns>
+    </ListView>
+    <ListView Id="Property_LookupListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" ShowAutoFilterRow="True" ShowFindPanel="True">
+      <Columns>
+        <ColumnInfo Id="Name" Width="79" />
+        <ColumnInfo Id="PropertySetDisplayValue" PropertyName="PropertySetDisplayValue" Index="1" Width="184" IsNewNode="True" />
+        <ColumnInfo Id="DisplayVersion" PropertyName="DisplayVersion" Index="2" Width="73" IsNewNode="True" />
+        <ColumnInfo Id="Owner.Name" PropertyName="Owner.Name" Index="3" Width="107" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="PropertyGroup_LookupListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
+    <ListView Id="PropertyInstance_LookupListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
+    <ListView Id="PropertySet_LookupListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
+    <ListView Id="RevitCategory_LookupListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor">
+      <Columns>
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="IFCName" PropertyName="IFCName" Index="1" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="RevitCategory_LookupListView_Copy" ClassName="BimLookup.Module.BusinessObjects.RevitCategory" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Name" PropertyName="Name" SortIndex="0" SortOrder="Ascending" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="IFCName" PropertyName="IFCName" Index="1" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="RevitPropertyType_LookupListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
+    <ListView Id="UINPOwner_LookupListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
+    <ListView Id="UINPPhase_LookupListView" EditorTypeName="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
+  </Views>
+</Application>

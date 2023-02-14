@@ -1,0 +1,31 @@
+﻿@using DevExpress.Blazor
+@using DevExpress.Persistent.BaseImpl
+
+<DxComboBox Value="(string)ColumnContext.FilterRowValue"
+    ValueChanged="(string v) => ColumnContext.FilterRowValue = v"
+    Data="@Data"
+    ValueFieldName="@ValueFieldName"
+    TextFieldName="@TextFieldName"
+    FilteringMode="DataGridFilteringMode.Contains"
+    ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto" />
+
+@code {
+    [Parameter]
+    public GridDataColumnFilterRowCellTemplateContext ColumnContext { get; set; }
+
+    [Parameter]
+    public IEnumerable<object> Data { get; set; }
+
+    [Parameter]
+    public string ValueFieldName { get; set; }
+
+    [Parameter]
+    public string TextFieldName { get; set; }
+
+    public static RenderFragment Create(GridDataColumnFilterRowCellTemplateContext columnContext, IEnumerable<object> data, string valueFieldName, string textFieldName) =>
+        @<ComboBoxFIlterTemplateRenderer 
+            ColumnContext=@columnContext 
+            Data=@data 
+            ValueFieldName=@valueFieldName
+            TextFieldName=@textFieldName/>;
+}

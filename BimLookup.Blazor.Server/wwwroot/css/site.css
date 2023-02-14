@@ -1,0 +1,44 @@
+html, body {
+    height: 100%;
+}
+
+app {
+    display: block;
+    height: 100%;
+}
+
+.header-logo {
+    flex-shrink: 0;
+    background-color: currentColor;
+    -webkit-mask: url('../images/Logo.svg');
+    mask: url('../images/Logo.svg');
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    width: 180px;
+    height: 24px;
+}
+/* ... */
+
+.grid-list-editor-customization {
+    height: 1000px;
+}
+/*
+Is possible to turn off word wrap in this grid and show only part of text fit to column width ?
+.dxbs-grid-table td {
+    white-space: nowrap;
+}
+    .dxbs-grid-table td {
+    height: 200px;
+}
+*/
+#blazor-error-ui {
+    background: inherit;
+    bottom: 0;
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 100001;
+}

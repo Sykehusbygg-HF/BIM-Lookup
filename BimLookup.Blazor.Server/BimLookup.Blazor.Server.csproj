@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Deterministic>false</Deterministic>
+    <AssemblyVersion>2.22.10.*</AssemblyVersion>
+    <FileVersion>2.22.10.0</FileVersion>
+    <Configurations>Debug;Release;EasyTest;DEBUG DEMO Sykehusbygg;DEBUG PROD Sykehusbygg;DEBUG SANDBOX Sykehusbygg;Release DEMO Sykehusbygg;Release PROD Sykehusbygg;Release SANDBOX Sykehusbygg</Configurations>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPublishable>True</IsPublishable>
+    <RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>$(DefineConstants);REPORTS;DEBUG</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG PROD Sykehusbygg|AnyCPU'">
+  <DefineConstants>$(DefineConstants);REPORTS;DEBUG</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG DEMO Sykehusbygg|AnyCPU'">
+  <DefineConstants>$(DefineConstants);REPORTS;DEBUG</DefineConstants>
+	</PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEBUG SANDBOX Sykehusbygg|AnyCPU'">
+    <DefineConstants>$(DefineConstants);REPORTS;DEBUG</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release PROD Sykehusbygg|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release DEMO Sykehusbygg|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release SANDBOX Sykehusbygg|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='EasyTest|AnyCPU'" />
+
+  <ItemGroup>
+    <None Remove="Model.xafml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model.xafml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DevExpress.ExpressApp.Api.Xpo.All" Version="22.2.4" />
+    <PackageReference Include="DevExpress.ExpressApp.Blazor" Version="22.2.4" />
+    <PackageReference Include="DevExpress.ExpressApp.CodeAnalysis" Version="22.2.4" />
+    <PackageReference Include="DevExpress.ExpressApp.ReportsV2" Version="22.2.4" />
+    <PackageReference Include="DevExpress.ExpressApp.ReportsV2.Blazor" Version="22.2.4" />
+    <PackageReference Include="DevExpress.ExpressApp.Security.Xpo" Version="22.2.4" />
+    <PackageReference Include="DevExpress.ExpressApp.Validation.Blazor" Version="22.2.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.4.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BimLookup.Module\BimLookup.Module.csproj" />
+    <ProjectReference Include="..\BIMLookup.NetApi\BIMLookup.NetApi.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="BimLookup">
+  <BOModel>
+    <Class Name="DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyUser" Caption="Base User" />
+  </BOModel>
+  <NavigationItems ShowImages="False" DefaultChildItemsDisplayStyle="LargeIcons" NavigationStyle="TreeList">
+    <Items>
+      <Item Id="BIM Lookup" Caption="BIM Lookup" Index="0" ImageName="Action_Search_Object_FindObjectByID" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="Property_ListView" ViewId="Property_ListView" ObjectKey="" Index="0" IsNewNode="True" />
+          <Item Id="Property_ListView_MasterDetailView" ObjectKey="" Index="0" ViewId="Property_MasterListDetailView" Caption="Property Master Detail View" Visible="False" IsNewNode="True" />
+          <Item Id="Property_ListView_GroupedByPropertyGroup" Caption="Property Grouped" Index="1" ViewId="Property_ListView_GroupedByPropertyGroup_UI" IsNewNode="True" />
+          <Item Id="Property_ListView_Latest" ObjectKey="" Index="2" Caption="Property Latest Version" ViewId="Property_ListView_Latest" IsNewNode="True" />
+          <Item Id="Property_ListView_Latest_User_UI" ObjectKey="" Index="3" Caption="Property User UI Test" ViewId="Property_ListView_User" IsNewNode="True" />
+          <Item Id="Property_ListView_Phase" ObjectKey="" Index="4" Caption="Property with Phase" ViewId="Property_ListView_Phases" IsNewNode="True" />
+          <Item Id="Project_ListView" ViewId="Project_ListView" ObjectKey="" Index="5" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Views" ViewId="" Index="1" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="Masterkrav Project" ImageName="BO_PivotChart" ViewId="MasterkravProjectView_ListView" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="@9c9fdd00-e846-4168-8f94-64af137a5c8b" Caption="BIM Catalog" Index="2" ImageName="FieldListPanelPivotTable" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="RevitCategory_ListView" ViewId="RevitCategory_ListView" ObjectKey="" Index="0" IsNewNode="True" />
+          <Item Id="Discipline_ListView" ViewId="Discipline_ListView" ObjectKey="" Index="1" IsNewNode="True" />
+          <Item Id="IfcPropertyType_ListView" ViewId="IfcPropertyType_ListView" ObjectKey="" Index="2" IsNewNode="True" />
+          <Item Id="Owner_ListView" ViewId="Owner_ListView" ObjectKey="" Index="3" IsNewNode="True" />
+          <Item Id="Phase_ListView" ViewId="Phase_ListView" ObjectKey="" Index="4" Visible="False" IsNewNode="True" />
+          <Item Id="PropertyGroup_ListView" ViewId="PropertyGroup_ListView" ObjectKey="" Index="5" IsNewNode="True" />
+          <Item Id="PropertySet_ListView" ViewId="PropertySet_ListView" ObjectKey="" IsNewNode="True" />
+          <Item Id="RevitPropertyType_ListView" ViewId="RevitPropertyType_ListView" ObjectKey="" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Default" Index="3">
+        <Items>
+          <Item Id="MasterkravProjectView_ListView" Index="100" Removed="True" />
+          <Item Id="PropertyBimKravView_ListView" Index="101" Removed="True" />
+          <Item Id="AppSettings_ListView" Removed="True" />
+          <Item Id="Discipline_ListView" Removed="True" />
+          <Item Id="IfcPropertyType_ListView" Removed="True" />
+          <Item Id="Owner_ListView" Removed="True" />
+          <Item Id="Phase_ListView" Removed="True" />
+          <Item Id="Project_ListView" Removed="True" />
+          <Item Id="Property_ListView" Removed="True" />
+          <Item Id="PropertyGroup_ListView" Removed="True" />
+          <Item Id="PropertyInstance_ListView" Removed="True" />
+          <Item Id="PropertySet_ListView" Removed="True" />
+          <Item Id="RevitCategory_ListView" Removed="True" />
+          <Item Id="RevitPropertyType_ListView" Removed="True" />
+        </Items>
+      </Item>
+      <Item Id="@e567b313-9825-4a27-9f1e-8a2d102dcb59" Caption="Settings" Index="4" ImageName="ViewSettings" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="AppSettings_DetailView" ViewId="AppSettings_DetailView" ObjectKey="" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Debug" Caption="Debug" Index="5" ImageName="Action_Debug_Start" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="PropertyInstance_ListView" ViewId="PropertyInstance_ListView" ObjectKey="" Index="6" Visible="True" IsNewNode="True" />
+          <Item Id="MasterkravProjectView_ListView" Index="100" ViewId="MasterkravProjectView_ListView" ObjectKey="" IsNewNode="True" />
+          <Item Id="PropertyBimKravView_ListView" ObjectKey="" ViewId="PropertyBimKravView_ListView" Index="101" IsNewNode="True" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <Options>
+    <LayoutManagerOptions RequiredFieldMark="*" />
+  </Options>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="22.2.3.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <ListView Id="ApplicationUser_ListView" Caption="Users" IsGroupPanelVisible="True" />
+    <ListView Id="ApplicationUserLoginInfo_ListView" IsGroupPanelVisible="True" />
+    <DetailView Id="AppSettings_DetailView" AllowDelete="False" AllowNew="False" />
+    <ListView Id="Discipline_ListView" IsGroupPanelVisible="True" AllowEdit="True" />
+    <ListView Id="IfcPropertyType_ListView" IsGroupPanelVisible="True" AllowEdit="True" />
+    <ListView Id="Owner_ListView" IsGroupPanelVisible="True" AllowEdit="True" />
+    <ListView Id="Phase_ListView" IsGroupPanelVisible="True" AllowEdit="True" />
+    <ListView Id="Project_ListView" AllowEdit="True" />
+    <ListView Id="Project_ListView_Select" ClassName="BimLookup.Module.BusinessObjects.Project" AllowDelete="False" AllowLink="False" AllowNew="False" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="Code" PropertyName="Code" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Existing" PropertyName="Existing" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="HealthCompany" PropertyName="HealthCompany" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Name" PropertyName="Name" SortIndex="0" SortOrder="Ascending" Index="0" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="Project_LookupListView" IsGroupPanelVisible="True" />
+    <ListView Id="Project_Properties_ListView" AllowLink="False" AllowUnlink="False" IsGroupPanelVisible="True">
+      <Columns>
+        <ColumnInfo Id="PropertySetDisplayValue" Index="1" />
+        <ColumnInfo Id="Property" Index="2" />
+      </Columns>
+    </ListView>
+    <ListView Id="Property_ListView" IsFooterVisible="False" IsGroupPanelVisible="True" ShowAutoFilterRow="False" ShowFindPanel="True" AllowEdit="True">
+      <Columns>
+        <ColumnInfo Id="Arbeidstegning" Index="-1" />
+        <ColumnInfo Id="Detaljprosjekt" Index="-1" />
+        <ColumnInfo Id="Forprosjekt" Index="-1" />
+        <ColumnInfo Id="IfcPropertyType" Index="-1" />
+        <ColumnInfo Id="Overlevering" Index="-1" />
+        <ColumnInfo Id="Owner" Index="-1" />
+        <ColumnInfo Id="PropertyGroup" Index="-1" />
+        <ColumnInfo Id="RevitPropertyType" Index="-1" />
+        <ColumnInfo Id="Skisseprosjekt" Index="-1" SortOrder="None" GroupIndex="-1" />
+        <ColumnInfo Id="Type_Instance" Index="-1" />
+        <ColumnInfo Id="PropertySetDisplayValue" Index="0" Width="81" />
+        <ColumnInfo Id="Name" Width="79" Index="1" />
+        <ColumnInfo Id="Comment" Index="2" />
+        <ColumnInfo Id="Description" Index="3" />
+      </Columns>
+      <Filters CurrentFilterId="All">
+        <Filter Id="All" Caption="All Versions" IsNewNode="True" />
+        <Filter Id="Latest" Criteria="[Latest] = True" Caption="Latest Version" IsNewNode="True" />
+        <Filter Id="Old" Caption="Old Versions" Criteria="[Latest] = False" IsNewNode="True" />
+      </Filters>
+    </ListView>
+    <ListView Id="Property_ListView_GroupedByPropertyGroup" ClassName="BimLookup.Module.BusinessObjects.Property" IsGroupPanelVisible="False" ShowFindPanel="True" AllowEdit="False" AllowDelete="False" AllowLink="False" AllowNew="False" AllowUnlink="False" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="IfcPropertyType" PropertyName="IfcPropertyType" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Phases" PropertyName="PhasesDisplayValue" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="RevitPropertyType" PropertyName="RevitPropertyType" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Type_Instance" PropertyName="Type_Instance" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Name" PropertyName="Name" SortIndex="0" SortOrder="Ascending" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="PropertySetDisplayValue" PropertyName="PropertySetDisplayValue" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="DisplayVersion" PropertyName="DisplayVersion" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="Comment" PropertyName="Comment" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="Description" PropertyName="Description" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="Skisseprosjekt" PropertyName="Skisseprosjekt" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Forprosjekt" PropertyName="Forprosjekt" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="Detaljprosjekt" PropertyName="Detaljprosjekt" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="Arbeidstegning" PropertyName="Arbeidstegning" Index="8" IsNewNode="True" />
+        <ColumnInfo Id="PropertyGroup" PropertyName="PropertyGroup" Index="9" SortOrder="Ascending" GroupIndex="0" IsNewNode="True" />
+        <ColumnInfo Id="Overlevering" PropertyName="Overlevering" Index="10" IsNewNode="True" />
+      </Columns>
+      <Filters CurrentFilterId="All" IsNewNode="True" />
+    </ListView>
+    <ListView Id="Property_ListView_GroupedByPropertyGroup_UI" ClassName="BimLookup.Module.BusinessObjects.Property" ShowFindPanel="True" AllowDelete="True" AllowLink="True" AllowNew="True" AllowEdit="True" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="Arbeidstegning" PropertyName="Arbeidstegning" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Detaljprosjekt" PropertyName="Detaljprosjekt" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Forprosjekt" PropertyName="Forprosjekt" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="IfcPropertyType" PropertyName="IfcPropertyType" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Overlevering" PropertyName="Overlevering" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="RevitPropertyType" PropertyName="RevitPropertyType" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Skisseprosjekt" PropertyName="Skisseprosjekt" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Type_Instance" PropertyName="Type_Instance" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Name" PropertyName="Name" SortIndex="0" SortOrder="Ascending" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="DisplayVersion" PropertyName="DisplayVersion" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="Comment" PropertyName="Comment" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="Description" PropertyName="Description" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="PropertyGroup" PropertyName="PropertyGroup" Index="4" SortOrder="Ascending" GroupIndex="0" IsNewNode="True" />
+      </Columns>
+      <Filters CurrentFilterId="All" IsNewNode="True" />
+    </ListView>
+    <ListView Id="Property_ListView_Latest" ClassName="BimLookup.Module.BusinessObjects.Property" IsGroupPanelVisible="True" ShowFindPanel="True" AllowEdit="True" Criteria="[Latest] = True" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="Arbeidstegning" PropertyName="Arbeidstegning" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Detaljprosjekt" PropertyName="Detaljprosjekt" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Forprosjekt" PropertyName="Forprosjekt" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="IfcPropertyType" PropertyName="IfcPropertyType" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Overlevering" PropertyName="Overlevering" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="RevitPropertyType" PropertyName="RevitPropertyType" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Skisseprosjekt" PropertyName="Skisseprosjekt" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Name" PropertyName="Name" SortIndex="0" SortOrder="Ascending" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="DisplayVersion" PropertyName="DisplayVersion" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="Comment" PropertyName="Comment" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="PropertyGroup" PropertyName="PropertyGroup" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="Description" PropertyName="Description" Index="4" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="Property_ListView_Phases" ClassName="BimLookup.Module.BusinessObjects.Property" IsGroupPanelVisible="True" ShowFindPanel="True" AllowEdit="True" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="IfcPropertyType" PropertyName="IfcPropertyType" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="RevitPropertyType" PropertyName="RevitPropertyType" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Name" PropertyName="Name" SortIndex="0" SortOrder="Ascending" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="DisplayVersion" PropertyName="DisplayVersion" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="Comment" PropertyName="Comment" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="PropertyGroup" PropertyName="PropertyGroup" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="Description" PropertyName="Description" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="Skisseprosjekt" PropertyName="Skisseprosjekt" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Forprosjekt" PropertyName="Forprosjekt" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="Detaljprosjekt" PropertyName="Detaljprosjekt" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="Arbeidstegning" PropertyName="Arbeidstegning" Index="8" IsNewNode="True" />
+        <ColumnInfo Id="Overlevering" PropertyName="Overlevering" Index="9" IsNewNode="True" />
+      </Columns>
+      <Filters CurrentFilterId="All" IsNewNode="True">
+        <Filter Id="All" Caption="All Versions" IsNewNode="True" />
+        <Filter Id="Latest" Criteria="[Latest] = True" Caption="Latest Version" IsNewNode="True" />
+        <Filter Id="Old" Caption="Old Versions" Criteria="[Latest] = False" IsNewNode="True" />
+      </Filters>
+    </ListView>
+    <ListView Id="Property_ListView_User" ClassName="BimLookup.Module.BusinessObjects.Property" AllowDelete="False" AllowLink="False" AllowNew="False" IsGroupPanelVisible="True" AllowEdit="True" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="IfcPropertyType" PropertyName="IfcPropertyType" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="PropertyGroup" PropertyName="PropertyGroup" Index="-1" SortOrder="None" GroupIndex="-1" IsNewNode="True" />
+        <ColumnInfo Id="RevitPropertyType" PropertyName="RevitPropertyType" Index="-1" SortOrder="None" GroupIndex="-1" IsNewNode="True" />
+        <ColumnInfo Id="Name" PropertyName="Name" SortIndex="0" SortOrder="Ascending" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="Description" PropertyName="Description" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="Comment" PropertyName="Comment" Index="2" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="Property_MasterListDetailView" ClassName="BimLookup.Module.BusinessObjects.Property" IsGroupPanelVisible="True" ShowFindPanel="True" AllowEdit="True" MasterDetailMode="ListViewAndDetailView" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="Arbeidstegning" PropertyName="Arbeidstegning" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Comment" PropertyName="Comment" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Description" PropertyName="Description" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Detaljprosjekt" PropertyName="Detaljprosjekt" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="DisplayVersion" PropertyName="DisplayVersion" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Forprosjekt" PropertyName="Forprosjekt" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="IfcPropertyType" PropertyName="IfcPropertyType" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Overlevering" PropertyName="Overlevering" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Owner" PropertyName="Owner" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="PhasesDisplayValue" PropertyName="PhasesDisplayValue" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="PropertyGroup" PropertyName="PropertyGroup" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="RevitPropertyType" PropertyName="RevitPropertyType" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Skisseprosjekt" PropertyName="Skisseprosjekt" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Type_Instance" PropertyName="Type_Instance" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="PropertySetDisplayValue" PropertyName="PropertySetDisplayValue" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="Name" PropertyName="Name" SortIndex="0" SortOrder="Ascending" Index="1" Width="79" IsNewNode="True" />
+      </Columns>
+      <Filters CurrentFilterId="All" IsNewNode="True">
+        <Filter Id="All" Caption="All Versions" IsNewNode="True" />
+        <Filter Id="Latest" Criteria="[Latest] = True" Caption="Latest Version" IsNewNode="True" />
+        <Filter Id="Old" Caption="Old Versions" Criteria="[Latest] = False" IsNewNode="True" />
+      </Filters>
+      <SplitLayout Direction="Vertical" SplitterPosition="100" IsNewNode="True" />
+    </ListView>
+    <ListView Id="PropertyGroup_ListView" IsGroupPanelVisible="True" AllowEdit="True" />
+    <ListView Id="PropertyInstance_ListView" IsGroupPanelVisible="True" AllowEdit="True" />
+    <ListView Id="PropertySet_ListView" IsGroupPanelVisible="True" AllowEdit="True" />
+    <ListView Id="RevitCategory_ListView" IsGroupPanelVisible="True" AllowEdit="True" />
+    <ListView Id="RevitPropertyType_ListView" IsGroupPanelVisible="True" AllowEdit="True" />
+    <ListView Id="RevitPropertyType_LookupListView" IsGroupPanelVisible="True" />
+    <ListView Id="UINPOwner_ListView" IsGroupPanelVisible="True" />
+    <ListView Id="UINPOwner_LookupListView" IsGroupPanelVisible="True" />
+    <ListView Id="UINPPhase_ListView" IsGroupPanelVisible="True" />
+    <ListView Id="UINPPhase_LookupListView" IsGroupPanelVisible="True" />
+  </Views>
+</Application>
